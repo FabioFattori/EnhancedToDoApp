@@ -1,6 +1,6 @@
 <?php
 
-use App\Domain\User;
+use App\Domain\Users\User;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\Facades\Notification;
 

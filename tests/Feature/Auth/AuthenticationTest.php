@@ -1,6 +1,6 @@
 <?php
 
-use App\Domain\User;
+use App\Domain\Users\User;
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
