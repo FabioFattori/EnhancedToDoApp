@@ -8,7 +8,6 @@ use App\Infrastructure\Tasks\Repositories\SingleActions\CreateTasksRepository;
 use App\Infrastructure\Tasks\Repositories\SingleActions\DestroyTasksRepository;
 use App\Infrastructure\Tasks\Repositories\SingleActions\GetTasksRepository;
 use App\Infrastructure\Tasks\Repositories\SingleActions\UpdateTasksRepository;
-use App\Infrastructure\Users\Repositories\SingleActions\GetUsersRepository;
 use Illuminate\Support\Collection;
 use Throwable;
 
