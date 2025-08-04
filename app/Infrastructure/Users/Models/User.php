@@ -27,6 +27,15 @@ class User
         return $this->password;
     }
 
+    public function toArray() : array
+    {
+        return [
+          'name' => $this->name,
+          'email' => $this->email,
+          'password' => $this->password
+        ];
+    }
+
     public static function fromArray(array $data): User
     {
         return new static(

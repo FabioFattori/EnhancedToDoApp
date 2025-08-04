@@ -2,18 +2,17 @@
 
 namespace App\Application\Users\Contracts;
 
-use App\Domain\Users\User as Entity;
 use App\Infrastructure\Users\Models\User;
 use Illuminate\Support\Collection;
 
 interface UserServiceContract
 {
     public function create(User $userModel): void;
-    public function update(User $userModel): void;
+    public function update(string $uuid, User $userModel): void;
     public function delete(string $uuid): void;
-    public function show(string $uuid): Entity|null;
+    public function show(string $uuid): User|null;
     /**
-     * @return Collection<Entity>
+     * @return Collection<User>
      */
     public function all(): Collection;
 }

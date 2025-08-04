@@ -7,10 +7,20 @@ use App\Domain\Tasks\Enums\TaskSeverities;
 use App\Domain\Tasks\Enums\TaskStatus;
 use App\Domain\Users\User;
 use Carbon\Carbon;
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @method static Builder|static query()
+ * @method static Builder|static whereId(string $id)
+ * @method static Builder|static whereTitle(string $title)
+ * @method static Builder|static whereDescription(string $description)
+ * @method static Builder|static whereDueDate(Carbon $date)
+ * @method static Builder|static whereSeverity(TaskSeverities $severity)
+ * @method static Builder|static whereStatus(TaskStatus $status)
+ */
 class Task extends Model
 {
     use HasUuids;
@@ -22,6 +32,9 @@ class Task extends Model
         'due_date',
         'severity',
         'status',
+        'owner_id',
+        'worker_id',
+        'task_collection_id'
     ];
 
     protected $casts = [

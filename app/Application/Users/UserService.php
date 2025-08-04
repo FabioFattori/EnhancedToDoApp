@@ -5,7 +5,6 @@ namespace App\Application\Users;
 use App\Application\Users\Contracts\UserServiceContract;
 use App\Infrastructure\Users\Models\User;
 use App\Infrastructure\Users\Repositories\Contracts\UsersRepositoryContract;
-use App\Domain\Users\User as Entity;
 use Illuminate\Support\Collection;
 
 readonly class UserService implements UserServiceContract
@@ -21,9 +20,9 @@ readonly class UserService implements UserServiceContract
         $this->usersRepository->create($userModel);
     }
 
-    public function update(User $userModel): void
+    public function update(string $uuid, User $userModel): void
     {
-        $this->usersRepository->update($userModel);
+        $this->usersRepository->update($uuid, $userModel);
     }
 
     public function delete(string $uuid): void
@@ -31,11 +30,14 @@ readonly class UserService implements UserServiceContract
         $this->usersRepository->delete($uuid);
     }
 
-    public function show(string $uuid): Entity|null
+    public function show(string $uuid): User|null
     {
         return $this->usersRepository->show($uuid);
     }
 
+    /**
+     * @return Collection<User>
+     */
     public function all(): Collection
     {
         return $this->usersRepository->all();

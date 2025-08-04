@@ -2,23 +2,23 @@
 
 namespace App\Infrastructure\Users\Repositories;
 
-use App\Domain\Users\User as Entity;
+use App\Domain\Users\User;
 use App\Infrastructure\Users\Models\User as Model;
 use App\Infrastructure\Users\Repositories\Contracts\UsersRepositoryContract;
-use App\Infrastructure\Users\Repositories\SingleActions\CreateUserRepository;
-use App\Infrastructure\Users\Repositories\SingleActions\DestroyUserRepository;
-use App\Infrastructure\Users\Repositories\SingleActions\GetUserRepository;
-use App\Infrastructure\Users\Repositories\SingleActions\UpdateUserRepository;
+use App\Infrastructure\Users\Repositories\SingleActions\CreateUsersRepository;
+use App\Infrastructure\Users\Repositories\SingleActions\DestroyUsersRepository;
+use App\Infrastructure\Users\Repositories\SingleActions\GetUsersRepository;
+use App\Infrastructure\Users\Repositories\SingleActions\UpdateUsersRepository;
 use Illuminate\Support\Collection;
 use Throwable;
 
 readonly class UsersRepository implements UsersRepositoryContract
 {
     public function __construct(
-        private CreateUserRepository $createUserRepository,
-        private UpdateUserRepository $updateUserRepository,
-        private GetUserRepository $getUserRepository,
-        private DestroyUserRepository $destroyUserRepository,
+        private CreateUsersRepository  $createUserRepository = new CreateUsersRepository(),
+        private GetUsersRepository     $getUserRepository = new GetUsersRepository(),
+        private UpdateUsersRepository  $updateUserRepository = new UpdateUsersRepository(),
+        private DestroyUsersRepository $destroyUserRepository = new DestroyUsersRepository(),
     )
     {
     }
@@ -34,9 +34,9 @@ readonly class UsersRepository implements UsersRepositoryContract
     /**
      * @throws Throwable
      */
-    public function update(Model $userModel): void
+    public function update(string $uuid, Model $userModel): void
     {
-        $this->updateUserRepository->update($userModel);
+        $this->updateUserRepository->update($uuid, $userModel);
     }
 
     /**
@@ -47,11 +47,14 @@ readonly class UsersRepository implements UsersRepositoryContract
         $this->destroyUserRepository->destroy($uuid);
     }
 
-    public function show(string $uuid): Entity|null
+    public function show(string $uuid): Model|null
     {
         return $this->getUserRepository->getByUuid($uuid);
     }
 
+    /**
+     * @return Collection<Model>
+     */
     public function all(): Collection
     {
         return $this->getUserRepository->getAll();

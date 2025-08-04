@@ -5,11 +5,17 @@ namespace App\Presentation\Users\Requests;
 readonly class FillableDataRequest
 {
     public function __construct(
+        private string|null $uuid,
         private string $email,
         private string $name,
         private string $password,
     )
     {
+    }
+
+    public function getUuid(): string|null
+    {
+        return $this->uuid;
     }
 
     public function getEmail(): string
@@ -27,7 +33,7 @@ readonly class FillableDataRequest
         return $this->password;
     }
 
-    public function toArray(): array
+    public function toArrayModel(): array
     {
         return [
             'email' => $this->email,

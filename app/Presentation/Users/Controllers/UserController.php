@@ -7,6 +7,7 @@ use App\Application\Users\Contracts\UserServiceContract;
 use App\Infrastructure\Users\Models\User;
 use App\Presentation\Users\Requests\FillableDataRequest;
 use App\Presentation\Users\Requests\UuidRequest;
+use Illuminate\Http\RedirectResponse;
 
 readonly class UserController
 {
@@ -18,32 +19,37 @@ readonly class UserController
 
     public function show(UuidRequest $request) : string
     {
-        return $this->userService->show($request->getUuid());
+        return json_encode($this->userService->show($request->getUuid())?->toArray());
     }
 
-    public function destroy(UuidRequest $request) : string
+    public function destroy(UuidRequest $request): RedirectResponse
     {
         $this->userService->delete($request->getUuid());
 
-        return "Done";
+        return redirect()->back();
     }
 
-    public function create(FillableDataRequest $request) : string
+    public function create(FillableDataRequest $request) : RedirectResponse
     {
         $this->userService->create(
-            User::fromArray($request->toArray())
+            User::fromArray($request->toArrayModel())
         );
 
-        return "Done";
+        return redirect()->back();
     }
 
-    public function update(FillableDataRequest $request) : string
+    public function update(FillableDataRequest $request) : RedirectResponse
     {
+        if(!$request->getUuid()){
+            return redirect()->back()->withErrors(['uuid' => 'uuid is required']);
+        }
+
         $this->userService->update(
-            User::fromArray($request->toArray()),
+            uuid: $request->getUuid(),
+            userModel: User::fromArray($request->toArrayModel()),
         );
 
-        return "Done";
+        return redirect()->back();
     }
 
     public function all(): string

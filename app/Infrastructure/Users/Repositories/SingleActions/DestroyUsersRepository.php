@@ -6,32 +6,19 @@ use App\Domain\Users\User;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
-readonly class DestroyUserRepository
+readonly class DestroyUsersRepository
 {
-    public function __construct(
-        private GetUserRepository $getUserRepository,
-    )
-    {
-    }
-
     /**
      * @throws Throwable
      */
     public function destroy(string $uuid): void
     {
-        /** @var User|null $user */
-        $user = $this->getUserRepository->getByUuid($uuid);
-
-        if(!$user){
-            return;
-        }
-
         DB::beginTransaction();
         try {
-            $user->delete();
+            User::query()->whereId($uuid)->delete();
+            DB::commit();
         }catch (Throwable $exception){
             DB::rollBack();
         }
-        DB::commit();
     }
 }

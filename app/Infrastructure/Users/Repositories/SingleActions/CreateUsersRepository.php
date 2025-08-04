@@ -5,9 +5,11 @@ namespace App\Infrastructure\Users\Repositories\SingleActions;
 
 use App\Infrastructure\Users\Models\User;
 use Illuminate\Support\Facades\DB;
+use App\Domain\Users\User as Entity;
+use Illuminate\Support\Facades\Hash;
 use Throwable;
 
-class CreateUserRepository
+class CreateUsersRepository
 {
     /**
      * @throws Throwable
@@ -16,14 +18,12 @@ class CreateUserRepository
     {
         DB::beginTransaction();
         try {
-            new \App\Domain\Users\User([
-                'name' => $userModel->getName(),
-                'email' => $userModel->getEmail(),
-                'password' => password_hash($userModel->getPassword(), PASSWORD_DEFAULT)
-            ]);
+            $attributes = $userModel->toArray();
+            $attributes['password'] = Hash::make($attributes['password']);
+            new Entity($attributes);
+            DB::commit();
         }catch (Throwable $exception){
             DB::rollBack();
         }
-        DB::commit();
     }
 }

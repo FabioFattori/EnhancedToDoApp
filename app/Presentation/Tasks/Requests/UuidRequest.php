@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Presentation\Users\Requests;
+namespace App\Presentation\Tasks\Requests;
 
 readonly class UuidRequest
 {
@@ -14,5 +14,4 @@ readonly class UuidRequest
     {
         return $this->uuid;
     }
-
 }
