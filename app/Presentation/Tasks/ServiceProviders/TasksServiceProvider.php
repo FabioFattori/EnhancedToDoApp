@@ -16,9 +16,10 @@ class TasksServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(TasksServiceContract::class, function (Application $app) {
-            return new TasksService(new TasksRepository());
-        });
+        $this->app->singleton(
+            TasksServiceContract::class,
+            fn(Application $app) => new TasksService(new TasksRepository())
+        );
     }
 
     /**
