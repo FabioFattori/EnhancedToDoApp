@@ -17,7 +17,7 @@ class DestroyTasksRepository
         try {
             Task::destroy([$uuid]);
             DB::commit();
-        }catch (Throwable $e){
+        } catch (Throwable $e) {
             DB::rollBack();
         }
     }

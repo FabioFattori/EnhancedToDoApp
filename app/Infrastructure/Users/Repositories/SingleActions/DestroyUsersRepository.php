@@ -17,7 +17,7 @@ readonly class DestroyUsersRepository
         try {
             User::destroy([$uuid]);
             DB::commit();
-        }catch (Throwable $exception){
+        } catch (Throwable $exception) {
             DB::rollBack();
         }
     }

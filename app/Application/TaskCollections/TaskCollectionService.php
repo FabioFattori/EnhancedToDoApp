@@ -11,8 +11,7 @@ readonly class TaskCollectionService implements TaskCollectionServiceContract
 {
     public function __construct(
         private TaskCollectionRepositoryContract $taskCollectionRepository
-    )
-    {
+    ) {
     }
 
 

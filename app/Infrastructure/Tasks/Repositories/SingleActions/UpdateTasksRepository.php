@@ -20,7 +20,7 @@ class UpdateTasksRepository
                 $model->toArray()
             );
             DB::commit();
-        }catch (Throwable $e){
+        } catch (Throwable $e) {
             DB::rollBack();
         }
     }

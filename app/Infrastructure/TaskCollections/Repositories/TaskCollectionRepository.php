@@ -14,12 +14,11 @@ use Throwable;
 readonly class TaskCollectionRepository implements TaskCollectionRepositoryContract
 {
     public function __construct(
-        private CreateTaskCollectionRepository  $createTaskCollectionRepository = new CreateTaskCollectionRepository(),
-        private UpdateTaskCollectionRepository  $updateTaskCollectionRepository = new UpdateTaskCollectionRepository(),
-        private GetTaskCollectionRepository     $getTaskCollectionRepository = new GetTaskCollectionRepository(),
+        private CreateTaskCollectionRepository $createTaskCollectionRepository = new CreateTaskCollectionRepository(),
+        private UpdateTaskCollectionRepository $updateTaskCollectionRepository = new UpdateTaskCollectionRepository(),
+        private GetTaskCollectionRepository $getTaskCollectionRepository = new GetTaskCollectionRepository(),
         private DestroyTaskCollectionRepository $destroyTaskCollectionRepository = new DestroyTaskCollectionRepository(),
-    )
-    {
+    ) {
     }
 
     /**

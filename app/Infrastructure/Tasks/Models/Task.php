@@ -10,16 +10,15 @@ use Illuminate\Database\Eloquent\Model;
 readonly class Task
 {
     public function __construct(
-        private string         $title,
-        private string         $description,
-        private Carbon         $dueDate,
+        private string $title,
+        private string $description,
+        private Carbon $dueDate,
         private TaskSeverities $severity,
-        private TaskStatus     $status,
-        private string         $ownerId,
-        private string         $workerId,
-        private string         $taskCollectionId
-    )
-    {
+        private TaskStatus $status,
+        private string $ownerId,
+        private string $workerId,
+        private string $taskCollectionId
+    ) {
     }
 
     public function getTitle(): string

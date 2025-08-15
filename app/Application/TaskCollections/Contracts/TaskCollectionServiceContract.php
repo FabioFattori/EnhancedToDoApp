@@ -9,7 +9,7 @@ interface TaskCollectionServiceContract
 {
     public function create(TaskCollection $taskCollection): void;
 
-    public function update(string $uuid,TaskCollection $taskCollection): void;
+    public function update(string $uuid, TaskCollection $taskCollection): void;
 
     public function destroy(string $uuid): void;
 

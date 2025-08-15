@@ -9,8 +9,7 @@ readonly class FillableDataRequest
         private string $email,
         private string $name,
         private string $password,
-    )
-    {
+    ) {
     }
 
     public function getUuid(): string|null

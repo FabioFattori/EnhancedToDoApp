@@ -18,7 +18,7 @@ class CreateTaskCollectionRepository
         try {
             new Entity($taskCollection->toArray());
             DB::commit();
-        }catch (Throwable $exception){
+        } catch (Throwable $exception) {
             DB::rollBack();
         }
     }

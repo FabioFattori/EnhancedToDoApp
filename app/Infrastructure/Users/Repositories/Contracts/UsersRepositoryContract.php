@@ -2,7 +2,6 @@
 
 namespace App\Infrastructure\Users\Repositories\Contracts;
 
-
 use App\Infrastructure\Users\Models\User as Model;
 use Illuminate\Support\Collection;
 

@@ -10,8 +10,7 @@ readonly class TaskCollection
         private string $title,
         private string $description,
         private string $creator_id,
-    )
-    {
+    ) {
     }
 
     public function getTitle(): string

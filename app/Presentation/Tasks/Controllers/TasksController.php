@@ -12,8 +12,7 @@ readonly class TasksController
 {
     public function __construct(
         private TasksServiceContract $tasksService
-    )
-    {
+    ) {
     }
 
     public function show(UuidRequest $request): string|false
@@ -32,7 +31,7 @@ readonly class TasksController
 
     public function update(FillableDataRequest $request): RedirectResponse
     {
-        if(!$request->getUuid()){
+        if (!$request->getUuid()) {
             return redirect()->back()->withErrors(['uuid' => 'uuid is required']);
         }
 
@@ -51,7 +50,7 @@ readonly class TasksController
         return redirect()->back();
     }
 
-    public function all() : string
+    public function all(): string
     {
         return $this->tasksService->all()->toJson();
     }

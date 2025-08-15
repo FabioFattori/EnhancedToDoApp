@@ -12,13 +12,13 @@ class UpdateTaskCollectionRepository
     /**
      * @throws Throwable
      */
-    public function update(string $uuid, Model $taskCollection) : void
+    public function update(string $uuid, Model $taskCollection): void
     {
         DB::beginTransaction();
         try {
             Entity::whereId($uuid)->update($taskCollection->toArray());
             DB::commit();
-        }catch (Throwable $e) {
+        } catch (Throwable $e) {
             DB::rollBack();
         }
     }

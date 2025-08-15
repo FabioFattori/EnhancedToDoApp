@@ -9,17 +9,16 @@ use Carbon\Carbon;
 readonly class FillableDataRequest
 {
     public function __construct(
-        private string|null    $uuid,
-        private string         $title,
-        private string         $description,
+        private string|null $uuid,
+        private string $title,
+        private string $description,
         private TaskSeverities $severity,
-        private TaskStatus     $status,
-        private Carbon         $dueDate,
-        private string         $ownerId,
-        private string         $workerId,
-        private string         $taskCollectionId
-    )
-    {
+        private TaskStatus $status,
+        private Carbon $dueDate,
+        private string $ownerId,
+        private string $workerId,
+        private string $taskCollectionId
+    ) {
     }
 
     public function getUuid(): string|null

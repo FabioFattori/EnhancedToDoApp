@@ -2,7 +2,6 @@
 
 namespace App\Presentation\Users\Controllers;
 
-
 use App\Application\Users\Contracts\UserServiceContract;
 use App\Infrastructure\Users\Models\User;
 use App\Presentation\Users\Requests\FillableDataRequest;
@@ -13,11 +12,10 @@ readonly class UserController
 {
     public function __construct(
         private UserServiceContract $userService
-    )
-    {
+    ) {
     }
 
-    public function show(UuidRequest $request) : string|false
+    public function show(UuidRequest $request): string|false
     {
         return json_encode($this->userService->show($request->getUuid())?->toArray());
     }
@@ -29,7 +27,7 @@ readonly class UserController
         return redirect()->back();
     }
 
-    public function create(FillableDataRequest $request) : RedirectResponse
+    public function create(FillableDataRequest $request): RedirectResponse
     {
         $this->userService->create(
             User::fromArray($request->toArrayModel())
@@ -38,9 +36,9 @@ readonly class UserController
         return redirect()->back();
     }
 
-    public function update(FillableDataRequest $request) : RedirectResponse
+    public function update(FillableDataRequest $request): RedirectResponse
     {
-        if(!$request->getUuid()){
+        if (!$request->getUuid()) {
             return redirect()->back()->withErrors(['uuid' => 'uuid is required']);
         }
 

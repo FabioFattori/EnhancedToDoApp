@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class UserTaskCollection extends Model
 {
     use HasUuids;
+
     protected $table = 'user_task_collection';
     protected $fillable = [
         'participator_id',
@@ -40,7 +41,7 @@ class UserTaskCollection extends Model
      * Get the user participating in the collection
      * @return BelongsTo<User, $this>
      */
-    public function participator() : BelongsTo
+    public function participator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'participator_id');
     }
@@ -49,8 +50,8 @@ class UserTaskCollection extends Model
      * Get the collection in which the user is participating
      * @return BelongsTo<TaskCollection, $this>
      */
-    public function taskCollection() : BelongsTo
+    public function taskCollection(): BelongsTo
     {
-        return $this->belongsTo(TaskCollection::class,'task_collection_id');
+        return $this->belongsTo(TaskCollection::class, 'task_collection_id');
     }
 }

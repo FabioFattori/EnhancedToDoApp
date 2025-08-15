@@ -2,7 +2,6 @@
 
 namespace App\Infrastructure\Users\Repositories\SingleActions;
 
-
 use App\Infrastructure\Users\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Domain\Users\User as Entity;
@@ -22,7 +21,7 @@ class CreateUsersRepository
             $attributes['password'] = Hash::make($attributes['password']);
             new Entity($attributes);
             DB::commit();
-        }catch (Throwable $exception){
+        } catch (Throwable $exception) {
             DB::rollBack();
         }
     }

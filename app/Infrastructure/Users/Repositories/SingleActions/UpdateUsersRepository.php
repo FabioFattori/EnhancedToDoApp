@@ -13,7 +13,7 @@ readonly class UpdateUsersRepository
     /**
      * @throws Throwable
      */
-    public function update(string $uuid, Model $userModel) : void
+    public function update(string $uuid, Model $userModel): void
     {
         DB::beginTransaction();
         try {
@@ -23,7 +23,7 @@ readonly class UpdateUsersRepository
                 ->update($attributes);
 
             DB::commit();
-        }catch (Throwable $exception){
+        } catch (Throwable $exception) {
             DB::rollBack();
         }
     }

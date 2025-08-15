@@ -16,7 +16,7 @@ class UserAppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(UserServiceContract::class, function (Application $app){
+        $this->app->singleton(UserServiceContract::class, function (Application $app) {
             return new UserService(new UsersRepository());
         });
     }

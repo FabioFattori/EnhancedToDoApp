@@ -18,8 +18,7 @@ readonly class TasksRepository implements TasksRepositoryContract
         private UpdateTasksRepository $updateTasksRepository = new UpdateTasksRepository(),
         private DestroyTasksRepository $destroyTasksRepository = new DestroyTasksRepository(),
         private GetTasksRepository $getTasksRepository = new GetTasksRepository(),
-    )
-    {
+    ) {
     }
 
     /**

@@ -8,8 +8,7 @@ class User
         protected string $name,
         protected string $email,
         protected string $password
-    )
-    {
+    ) {
     }
 
     public function getName(): string
@@ -30,7 +29,7 @@ class User
     /**
      * @return array{ name: string, email: string, password: string }
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         return [
           'name' => $this->name,

@@ -15,12 +15,11 @@ use Throwable;
 readonly class UsersRepository implements UsersRepositoryContract
 {
     public function __construct(
-        private CreateUsersRepository  $createUserRepository = new CreateUsersRepository(),
-        private GetUsersRepository     $getUserRepository = new GetUsersRepository(),
-        private UpdateUsersRepository  $updateUserRepository = new UpdateUsersRepository(),
+        private CreateUsersRepository $createUserRepository = new CreateUsersRepository(),
+        private GetUsersRepository $getUserRepository = new GetUsersRepository(),
+        private UpdateUsersRepository $updateUserRepository = new UpdateUsersRepository(),
         private DestroyUsersRepository $destroyUserRepository = new DestroyUsersRepository(),
-    )
-    {
+    ) {
     }
 
     /**

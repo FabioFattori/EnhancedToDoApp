@@ -11,8 +11,7 @@ readonly class TasksService implements TasksServiceContract
 {
     public function __construct(
         private TasksRepositoryContract $tasksRepository
-    )
-    {
+    ) {
     }
 
     public function create(Task $task): void

@@ -2,7 +2,6 @@
 
 namespace App\Infrastructure\Tasks\Repositories\SingleActions;
 
-
 use App\Infrastructure\Tasks\Models\Task;
 use Illuminate\Support\Facades\DB;
 use App\Domain\Tasks\Task as Entity;
@@ -21,7 +20,7 @@ class CreateTasksRepository
                 $model->toArray()
             );
             DB::commit();
-        }catch (Throwable $e){
+        } catch (Throwable $e) {
             DB::rollBack();
         }
     }

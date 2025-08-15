@@ -9,11 +9,10 @@ readonly class TaskCollectionController
 {
     public function __construct(
         private TaskCollectionServiceContract $taskCollectionService
-    )
-    {
+    ) {
     }
 
-    public function show(UuidRequest $uuidRequest) : string|false
+    public function show(UuidRequest $uuidRequest): string|false
     {
         return json_encode($this->taskCollectionService->show($uuidRequest->getUuid()));
     }

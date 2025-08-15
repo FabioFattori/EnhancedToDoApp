@@ -11,13 +11,13 @@ class DestroyTaskCollectionRepository
     /**
      * @throws Throwable
      */
-    public function destroy(string $uuid) : void
+    public function destroy(string $uuid): void
     {
         DB::beginTransaction();
         try {
             Entity::destroy([$uuid]);
             DB::commit();
-        }catch (Throwable $exception){
+        } catch (Throwable $exception) {
             DB::rollBack();
         }
     }

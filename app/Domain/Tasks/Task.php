@@ -68,7 +68,7 @@ class Task extends Model
      * Get the worker currently working to the Task
      * @return BelongsTo<User, $this>
      */
-    public function worker() : BelongsTo
+    public function worker(): BelongsTo
     {
         return $this->belongsTo(User::class, 'worker_id');
     }

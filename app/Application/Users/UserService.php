@@ -11,8 +11,7 @@ readonly class UserService implements UserServiceContract
 {
     public function __construct(
         private UsersRepositoryContract $usersRepository
-    )
-    {
+    ) {
     }
 
     public function create(User $userModel): void
