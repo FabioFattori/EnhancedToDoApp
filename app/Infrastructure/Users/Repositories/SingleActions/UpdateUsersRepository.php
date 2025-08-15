@@ -19,8 +19,7 @@ readonly class UpdateUsersRepository
         try {
             $attributes = $userModel->toArray();
             $attributes['password'] = Hash::make($attributes['password']);
-            Entity::query()
-                ->whereId($uuid)
+            Entity::whereId($uuid)
                 ->update($attributes);
 
             DB::commit();

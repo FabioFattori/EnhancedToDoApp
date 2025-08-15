@@ -11,10 +11,12 @@ use Illuminate\Notifications\Notifiable;
 
 
 /**
- * @method static Builder|static query()
- * @method static Builder|static whereId(string $id)
- * @method static Builder|static whereEmail(string $email)
- * @method static Builder|static whereName(string $name)
+ * @mixin Builder<$this>
+ *
+ * @method static Builder<$this>|static query()
+ * @method static Builder<$this>|static whereId(string $id)
+ * @method static Builder<$this>|static whereEmail(string $email)
+ * @method static Builder<$this>|static whereName(string $name)
  */
 class User extends Authenticatable
 {

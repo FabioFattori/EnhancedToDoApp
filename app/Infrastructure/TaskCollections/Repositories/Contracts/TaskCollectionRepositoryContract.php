@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Infrastructure\Tasks\Repositories\Contracts;
+namespace App\Infrastructure\TaskCollections\Repositories\Contracts;
 
-use App\Infrastructure\Tasks\Models\Task as Model;
+use App\Infrastructure\TaskCollections\Models\TaskCollection as Model;
 use Illuminate\Support\Collection;
 
-interface TasksRepositoryContract
+interface TaskCollectionRepositoryContract
 {
     public function create(Model $model): void;
 

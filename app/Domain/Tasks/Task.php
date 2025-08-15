@@ -7,19 +7,21 @@ use App\Domain\Tasks\Enums\TaskSeverities;
 use App\Domain\Tasks\Enums\TaskStatus;
 use App\Domain\Users\User;
 use Carbon\Carbon;
-use Illuminate\Contracts\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @method static Builder|static query()
- * @method static Builder|static whereId(string $id)
- * @method static Builder|static whereTitle(string $title)
- * @method static Builder|static whereDescription(string $description)
- * @method static Builder|static whereDueDate(Carbon $date)
- * @method static Builder|static whereSeverity(TaskSeverities $severity)
- * @method static Builder|static whereStatus(TaskStatus $status)
+ * @mixin Builder<$this>
+ *
+ * @method static Builder<$this>|static query()
+ * @method static Builder<$this>|static whereId(string $id)
+ * @method static Builder<$this>|static whereTitle(string $title)
+ * @method static Builder<$this>|static whereDescription(string $description)
+ * @method static Builder<$this>|static whereDueDate(Carbon $date)
+ * @method static Builder<$this>|static whereSeverity(TaskSeverities $severity)
+ * @method static Builder<$this>|static whereStatus(TaskStatus $status)
  */
 class Task extends Model
 {
@@ -37,6 +39,7 @@ class Task extends Model
         'task_collection_id'
     ];
 
+    /** @var string[] $casts */
     protected $casts = [
         'severity' => TaskSeverities::class,
         'due_date' => Carbon::class,
@@ -45,7 +48,7 @@ class Task extends Model
 
     /**
      * Get the creator of the Task
-     * @return BelongsTo
+     * @return BelongsTo<User, $this>
      */
     public function creator(): BelongsTo
     {
@@ -54,7 +57,7 @@ class Task extends Model
 
     /**
      * Get the collection in which the task takes part
-     * @return BelongsTo
+     * @return BelongsTo<TaskCollection, $this>
      */
     public function task_collection(): BelongsTo
     {
@@ -63,7 +66,7 @@ class Task extends Model
 
     /**
      * Get the worker currently working to the Task
-     * @return BelongsTo
+     * @return BelongsTo<User, $this>
      */
     public function worker() : BelongsTo
     {

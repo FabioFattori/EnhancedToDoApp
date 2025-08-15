@@ -36,7 +36,7 @@ readonly class UserService implements UserServiceContract
     }
 
     /**
-     * @return Collection<User>
+     * @return Collection<int, User>
      */
     public function all(): Collection
     {

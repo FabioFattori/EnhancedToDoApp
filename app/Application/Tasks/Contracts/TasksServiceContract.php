@@ -13,7 +13,7 @@ interface TasksServiceContract
     public function show(string $uuid): Task|null;
 
     /**
-     * @return Collection<Task>
+     * @return Collection<int, Task>
      */
     public function all(): Collection;
 }

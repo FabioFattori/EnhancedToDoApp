@@ -12,7 +12,7 @@ interface UserServiceContract
     public function delete(string $uuid): void;
     public function show(string $uuid): User|null;
     /**
-     * @return Collection<User>
+     * @return Collection<int, User>
      */
     public function all(): Collection;
 }

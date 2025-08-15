@@ -27,6 +27,9 @@ class User
         return $this->password;
     }
 
+    /**
+     * @return array{ name: string, email: string, password: string }
+     */
     public function toArray() : array
     {
         return [
@@ -36,9 +39,13 @@ class User
         ];
     }
 
+    /**
+     * @param array{ name: string, email: string, password: string } $data
+     * @return User
+     */
     public static function fromArray(array $data): User
     {
-        return new static(
+        return new self(
             $data['name'],
             $data['email'],
             $data['password']

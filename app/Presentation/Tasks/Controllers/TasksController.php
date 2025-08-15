@@ -16,9 +16,9 @@ readonly class TasksController
     {
     }
 
-    public function show(UuidRequest $request): string
+    public function show(UuidRequest $request): string|false
     {
-        return json_encode($this->tasksService->show($request->getUuid())->toArray());
+        return json_encode($this->tasksService->show($request->getUuid())?->toArray());
     }
 
     public function create(FillableDataRequest $request): RedirectResponse

@@ -9,15 +9,15 @@ use Carbon\Carbon;
 readonly class FillableDataRequest
 {
     public function __construct(
-        private string|null $uuid,
-        private string $title,
-        private string $description,
+        private string|null    $uuid,
+        private string         $title,
+        private string         $description,
         private TaskSeverities $severity,
-        private TaskStatus $status,
-        private Carbon $dueDate,
-        private string $ownerId,
-        private string $workerId,
-        private string $taskCollectionId
+        private TaskStatus     $status,
+        private Carbon         $dueDate,
+        private string         $ownerId,
+        private string         $workerId,
+        private string         $taskCollectionId
     )
     {
     }
@@ -67,6 +67,18 @@ readonly class FillableDataRequest
         return $this->taskCollectionId;
     }
 
+    /**
+     * @return array{
+     *    title: string,
+     *    description: string,
+     *    due_date: Carbon,
+     *    severity: TaskSeverities,
+     *    status: TaskStatus,
+     *    owner_id: string,
+     *    worker_id: string,
+     *    task_collection_id: string
+     * }
+     */
     public function toArrayModel(): array
     {
         return [

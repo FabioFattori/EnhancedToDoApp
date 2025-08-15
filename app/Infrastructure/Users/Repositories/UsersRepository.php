@@ -53,7 +53,7 @@ readonly class UsersRepository implements UsersRepositoryContract
     }
 
     /**
-     * @return Collection<Model>
+     * @return Collection<int, Model>
      */
     public function all(): Collection
     {

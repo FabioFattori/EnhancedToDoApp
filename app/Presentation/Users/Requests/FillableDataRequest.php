@@ -33,6 +33,9 @@ readonly class FillableDataRequest
         return $this->password;
     }
 
+    /**
+     * @return array{ email: string, name: string, password: string }
+     */
     public function toArrayModel(): array
     {
         return [

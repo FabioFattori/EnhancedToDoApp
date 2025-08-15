@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Infrastructure\TaskCollections\Models;
+
+use phpDocumentor\Reflection\DocBlock\Description;
+
+readonly class TaskCollection
+{
+    public function __construct(
+        private string $title,
+        private string $description,
+        private string $creator_id,
+    )
+    {
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getCreatorId(): string
+    {
+        return $this->creator_id;
+    }
+
+    /**
+     * @return array{title: string, description: string, creator_id: string}
+     */
+    public function toArray(): array
+    {
+        return [
+            'title' => $this->title,
+            'description' => $this->description,
+            'creator_id' => $this->creator_id,
+        ];
+    }
+
+    /**
+     * @param array{title: string, description: string, creator_id: string} $data
+     * @return self
+     */
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            title: $data['title'],
+            description: $data['description'],
+            creator_id: $data['creator_id'],
+        );
+    }
+}

@@ -10,14 +10,14 @@ use Illuminate\Database\Eloquent\Model;
 readonly class Task
 {
     public function __construct(
-        private string $title,
-        private string $description,
-        private Carbon $dueDate,
+        private string         $title,
+        private string         $description,
+        private Carbon         $dueDate,
         private TaskSeverities $severity,
-        private TaskStatus $status,
-        private string $ownerId,
-        private string $workerId,
-        private string $taskCollectionId
+        private TaskStatus     $status,
+        private string         $ownerId,
+        private string         $workerId,
+        private string         $taskCollectionId
     )
     {
     }
@@ -62,23 +62,48 @@ readonly class Task
         return $this->taskCollectionId;
     }
 
+    /**
+     * @return array{
+     *     title: string,
+     *     description: string,
+     *     due_date: Carbon,
+     *     severity: TaskSeverities,
+     *     status: TaskStatus,
+     *     owner_id: string,
+     *     worker_id: string,
+     *     task_collection_id: string
+     * }
+     */
     public function toArray(): array
     {
         return [
-          'title' => $this->title,
-          'description' => $this->description,
-          'due_date' => $this->dueDate,
-          'severity' => $this->severity,
-          'status' => $this->status,
-          'owner_id' => $this->ownerId,
-          'worker_id' => $this->workerId,
-          'task_collection_id' => $this->taskCollectionId
+            'title' => $this->title,
+            'description' => $this->description,
+            'due_date' => $this->dueDate,
+            'severity' => $this->severity,
+            'status' => $this->status,
+            'owner_id' => $this->ownerId,
+            'worker_id' => $this->workerId,
+            'task_collection_id' => $this->taskCollectionId
         ];
     }
 
+    /**
+     * @param array{
+     *      title: string,
+     *      description: string,
+     *      due_date: Carbon,
+     *      severity: TaskSeverities,
+     *      status: TaskStatus,
+     *      owner_id: string,
+     *      worker_id: string,
+     *      task_collection_id: string
+     *  } $data
+     * @return self
+     */
     public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             title: $data['title'],
             description: $data['description'],
             dueDate: Carbon::parse($data['due_date']),

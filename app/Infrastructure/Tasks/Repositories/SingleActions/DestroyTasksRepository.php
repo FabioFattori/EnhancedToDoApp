@@ -15,7 +15,7 @@ class DestroyTasksRepository
     {
         DB::beginTransaction();
         try {
-            Task::query()->whereId($uuid)->delete();
+            Task::destroy([$uuid]);
             DB::commit();
         }catch (Throwable $e){
             DB::rollBack();

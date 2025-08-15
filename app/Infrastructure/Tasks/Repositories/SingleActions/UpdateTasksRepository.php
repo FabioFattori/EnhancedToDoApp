@@ -16,7 +16,7 @@ class UpdateTasksRepository
     {
         DB::beginTransaction();
         try {
-            Entity::query()->whereId($uuid)->update(
+            Entity::whereId($uuid)->update(
                 $model->toArray()
             );
             DB::commit();

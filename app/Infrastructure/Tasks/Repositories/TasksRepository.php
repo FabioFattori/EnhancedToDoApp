@@ -52,7 +52,7 @@ readonly class TasksRepository implements TasksRepositoryContract
     }
 
     /**
-     * @return Collection<Task>
+     * @return Collection<int, Task>
      */
     public function all(): Collection
     {

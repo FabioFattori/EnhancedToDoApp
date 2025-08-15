@@ -14,7 +14,7 @@ interface UsersRepositoryContract
     public function show(string $uuid): Model|null;
 
     /**
-     * @return Collection<Model>
+     * @return Collection<int, Model>
      */
     public function all(): Collection;
 }

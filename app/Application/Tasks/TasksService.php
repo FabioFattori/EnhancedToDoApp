@@ -36,7 +36,7 @@ readonly class TasksService implements TasksServiceContract
     }
 
     /**
-     * @return Collection<Task>
+     * @return Collection<int, Task>
      */
     public function all(): Collection
     {

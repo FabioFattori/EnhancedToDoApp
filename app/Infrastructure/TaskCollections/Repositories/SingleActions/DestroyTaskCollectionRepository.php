@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Infrastructure\Users\Repositories\SingleActions;
+namespace App\Infrastructure\TaskCollections\Repositories\SingleActions;
 
-use App\Domain\Users\User;
+use App\Domain\TaskCollections\TaskCollection as Entity;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
-readonly class DestroyUsersRepository
+class DestroyTaskCollectionRepository
 {
     /**
      * @throws Throwable
      */
-    public function destroy(string $uuid): void
+    public function destroy(string $uuid) : void
     {
         DB::beginTransaction();
         try {
-            User::destroy([$uuid]);
+            Entity::destroy([$uuid]);
             DB::commit();
         }catch (Throwable $exception){
             DB::rollBack();

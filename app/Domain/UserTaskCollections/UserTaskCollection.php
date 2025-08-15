@@ -5,10 +5,20 @@ namespace App\Domain\UserTaskCollections;
 use App\Domain\TaskCollections\TaskCollection;
 use App\Domain\Users\User;
 use App\Domain\UserTaskCollections\Enums\UserAbilities;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @mixin Builder<$this>
+ *
+ * @method static Builder<$this>|static query()
+ * @method static Builder<$this>|static whereId(string $id)
+ * @method static Builder<$this>|static whereParticipatorId(string $participator_id)
+ * @method static Builder<$this>|static whereTaskCollectionId(string $task_collection_id)
+ * @method static Builder<$this>|static whereAbility(UserAbilities $ability)
+ */
 class UserTaskCollection extends Model
 {
     use HasUuids;
@@ -19,6 +29,7 @@ class UserTaskCollection extends Model
         'ability'
     ];
 
+    /** @var string[] $casts */
     protected $casts = [
         'task_collection_id' => 'string',
         'ability' => UserAbilities::class,
@@ -27,7 +38,7 @@ class UserTaskCollection extends Model
 
     /**
      * Get the user participating in the collection
-     * @return BelongsTo
+     * @return BelongsTo<User, $this>
      */
     public function participator() : BelongsTo
     {
@@ -36,7 +47,7 @@ class UserTaskCollection extends Model
 
     /**
      * Get the collection in which the user is participating
-     * @return BelongsTo
+     * @return BelongsTo<TaskCollection, $this>
      */
     public function taskCollection() : BelongsTo
     {

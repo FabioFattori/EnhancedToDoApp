@@ -17,7 +17,7 @@ readonly class UserController
     {
     }
 
-    public function show(UuidRequest $request) : string
+    public function show(UuidRequest $request) : string|false
     {
         return json_encode($this->userService->show($request->getUuid())?->toArray());
     }
