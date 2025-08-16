@@ -6,6 +6,7 @@ import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
 import { ZiggyVue } from 'ziggy-js';
 import {createPinia} from "pinia";
+import { onThemeLoad } from './helpers/ThemeHandling';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -25,3 +26,5 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
+
+onThemeLoad()
