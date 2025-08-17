@@ -18,7 +18,7 @@
     --color-foreground: var(--foreground);
     --color-foreground-700: var(--foreground-700);
     --color-foreground-500: var(--foreground-500);
-
+    --color-background-700: var(--background-700);
     --color-primary: var(--primary);
 
     --color-text-primary: var(--text-primary);
@@ -52,6 +52,7 @@
 
 :root {
     --background: rgb(236, 236, 236);
+    --background-700: rgb(187, 186, 186);
     --foreground: rgb(128, 119, 227);
     --foreground-700: rgba(128, 119, 227, 0.7);
     --foreground-500: rgba(128, 119, 227, 0.5);
@@ -61,6 +62,7 @@
 
 .dark {
     --background: rgb(38,35,51);
+    --background-700: rgb(58, 52, 77);
     --foreground: rgb(90,85,159);
     --foreground-700: rgba(90,85,159, 0.7);
     --foreground-500: rgba(90,85,159, 0.5);

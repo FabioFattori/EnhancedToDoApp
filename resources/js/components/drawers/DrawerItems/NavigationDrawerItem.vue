@@ -1,20 +1,36 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
+import {router} from "@inertiajs/vue3";
+
 const props = defineProps({
-  label: String,
-  route: String
-})
+    label: String,
+    route: String,
+});
 
+const isActive = ref(false);
 
-function onClick() : void {
-  route(props.route)
+onMounted(() => {
+
+  isActive.value = route().current(`${props.route}*`);
+});
+
+function onClick(): void {
+  router.visit(route(props.route));
 }
 </script>
 
 <template>
     <li>
-        <a @click="onClick" class="group relative flex justify-center rounded-sm px-2 py-1.5 text-gray-500 hover:bg-foreground-500 hover:text-text-primary cursor-pointer">
+        <a
+            @click="onClick"
+            class="group relative flex cursor-pointer justify-center rounded-sm px-2 py-1.5 text-gray-500 hover:bg-foreground-500 hover:text-text-primary"
+            :class="{
+              'bg-foreground-500' : isActive,
+              'text-text-primary' : isActive
+            }"
+        >
             <div>
-              <slot />
+                <slot />
             </div>
 
             <span

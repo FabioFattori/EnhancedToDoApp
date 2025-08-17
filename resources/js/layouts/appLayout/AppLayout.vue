@@ -26,13 +26,13 @@ function toggleDrawer() {
     <div class="flex w-full">
         <NavigationDrawer v-if="!isDrawerOpen" />
         <div class="w-full flex-col">
-            <nav class="flex h-16 w-full items-center justify-between bg-foreground pr-6 pl-6" :class="{ 'justify-end': !isMobile }">
+            <nav class="flex h-16 w-full items-center justify-between bg-background pr-6 pl-6" :class="{ 'justify-end': !isMobile }">
                 <div class="h-auto w-20" v-if="showDrawerButton" @click="toggleDrawer">
                     <i class="fa-solid fa-bars cursor-pointer text-xl text-text-primary"></i>
                 </div>
                 <SwitchThemeButton />
             </nav>
-            <main class="flex items-start justify-between p-4">
+            <main class="flex items-start justify-between p-4 border-t-1 border-foreground">
                 <slot />
             </main>
         </div>

@@ -28,11 +28,11 @@ export default defineComponent({
 </script>
 
 <template>
-    <div class="flex h-9 w-27 items-center justify-center rounded-xl border-2 border-text-primary p-1">
+    <div class="flex h-9 w-27 items-center justify-center rounded-xl border-2 border-foreground p-1">
         <div
-            class="flex h-8 cursor-pointer items-center justify-center rounded-tl-xl rounded-bl-xl pr-1 pl-1.5"
+            class="flex h-9 w-full cursor-pointer items-center justify-center rounded-tl-xl rounded-bl-xl pr-1 pl-1.5 hover:bg-foreground-500"
             :class="{
-                'bg-background': currentTheme === 'dark',
+                'bg-foreground-700': currentTheme === 'dark',
             }"
         >
             <i
@@ -46,9 +46,9 @@ export default defineComponent({
         </div>
 
         <div
-            class="flex h-8 cursor-pointer items-center justify-center border-r-2 border-l-2 border-text-primary pr-1 pl-1"
+            class="flex h-9 w-full cursor-pointer items-center justify-center border-r-2 border-l-2 border-foreground pr-1 pl-1 hover:bg-foreground-500"
             :class="{
-                'bg-background': currentTheme === 'light',
+                'bg-foreground-700': currentTheme === 'light',
             }"
         >
             <i
@@ -61,9 +61,9 @@ export default defineComponent({
             ></i>
         </div>
         <div
-            class="flex h-8 cursor-pointer items-center justify-center rounded-tr-xl rounded-br-xl pr-1 pl-1"
+            class="flex h-9  w-full cursor-pointer items-center justify-center rounded-tr-xl rounded-br-xl pr-1 pl-1 hover:bg-foreground-500"
             :class="{
-                'bg-background': currentTheme === 'system',
+                'bg-foreground-700': currentTheme === 'system',
             }"
         >
             <i
