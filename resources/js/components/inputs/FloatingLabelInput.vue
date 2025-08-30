@@ -8,10 +8,10 @@ defineProps({
 </script>
 
 <template>
-  <label for="{{id}}" class="relative">
+  <label :for="id" class="relative">
     <input
-        type="{{ type }}"
-        id="{{id}}"
+        :type="type"
+        :id="id"
         placeholder=""
         class="peer mt-0.5 w-full rounded border-text-primary shadow-sm sm:text-sm"
     />
