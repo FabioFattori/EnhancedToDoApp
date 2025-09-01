@@ -4,7 +4,7 @@ namespace App\Presentation\Users\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class RegisterRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -14,13 +14,15 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email'    => ['required', 'email'],
+            'name' => 'required|string|max:255',
+            'email' => ['required', 'email'],
             'password' => ['required', 'string'],
+            'confirm_password' => ['required', 'same:password'],
         ];
     }
 
     public function credentials(): array
     {
-        return $this->only('email', 'password');
+        return $this->only('name', 'email', 'password');
     }
 }
