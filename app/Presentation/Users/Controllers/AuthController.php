@@ -7,6 +7,7 @@ use App\Infrastructure\Users\Models\User;
 use App\Presentation\Users\Requests\LoginRequest;
 use App\Presentation\Users\Requests\RegisterRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -15,8 +16,7 @@ readonly class AuthController
 {
     public function __construct(
         private UserServiceContract $usersService
-    )
-    {
+    ) {
     }
 
     public function loginIndex(): Response
@@ -34,7 +34,7 @@ readonly class AuthController
         if (Auth::attempt($request->credentials())) {
             $request->session()->regenerate();
 
-            return redirect()->intended('home');
+            return redirect()->intended('/');
         }
 
         return back()->withErrors([
@@ -44,12 +44,12 @@ readonly class AuthController
 
     public function register(RegisterRequest $request): RedirectResponse
     {
-        $this->usersService->create(User::fromArray($request->credentials()));
+        $this->usersService->create(User::fromArray($request->userData()));
 
         if (Auth::attempt($request->credentials())) {
             $request->session()->regenerate();
 
-            return redirect()->intended('home');
+            return redirect()->intended('/');
         }
 
         return back()->withErrors([

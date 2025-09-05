@@ -20,7 +20,7 @@ function onClick(): void {
 </script>
 
 <template>
-    <li>
+    <li style="list-style: none">
         <a
             @click="onClick"
             class="group relative flex cursor-pointer justify-center rounded-sm px-2 py-1.5 text-gray-500 hover:bg-foreground-500 hover:text-text-primary"

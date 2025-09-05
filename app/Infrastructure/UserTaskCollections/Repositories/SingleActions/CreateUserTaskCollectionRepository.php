@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\UserTaskCollections\Repositories\SingleActions;
 
+use App\Domain\UserTaskCollections\Enums\UserAbilities;
 use App\Domain\UserTaskCollections\UserTaskCollection as Entity;
 use App\Infrastructure\UserTaskCollections\Models\UserTaskCollection as Model;
 use Illuminate\Support\Facades\DB;
@@ -12,16 +13,21 @@ class CreateUserTaskCollectionRepository
     /**
      * @throws Throwable
      */
-    public function create(Model $model): void
+    public function create(Model $model): Model
     {
-        DB::beginTransaction();
-        try {
-            new Entity(
+        return DB::transaction(function () use ($model) {
+            /** @var array{
+             *     uuid: string,
+             *     participator_id: string,
+             *     task_collection_id: string,
+             *      ability: UserAbilities
+             * } $entityArray
+             */
+            $entityArray = Entity::create(
                 $model->toArray()
-            );
-            DB::commit();
-        } catch (Throwable $exception) {
-            DB::rollBack();
-        }
+            )->toArray();
+
+            return Model::fromArray($entityArray);
+        });
     }
 }

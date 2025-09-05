@@ -18,7 +18,7 @@ class GetTaskCollectionRepository
             return null;
         }
 
-        /** @var array{ title: string, description: string, creator_id: string } $entityArray */
+        /** @var array{ uuid: string, title: string, description: string, creator_id: string } $entityArray */
         $entityArray = $response->toArray();
 
         return Model::fromArray(
@@ -34,7 +34,7 @@ class GetTaskCollectionRepository
         return Entity::all()
             ->map(
                 function ($entity) {
-                    /** @var array{ title: string, description: string, creator_id: string } $entityArray */
+                    /** @var array{ uuid: string,title: string, description: string, creator_id: string } $entityArray */
                     $entityArray = $entity->toArray();
                     return Model::fromArray($entityArray);
                 }

@@ -20,7 +20,7 @@ class GetUserTaskCollectionRepository
             return null;
         }
 
-        /** @var array{ participator_id: string, task_collection_id: string, ability: UserAbilities } $entityArray */
+        /** @var array{ uuid: string,participator_id: string, task_collection_id: string, ability: UserAbilities } $entityArray */
         $entityArray = $entity->toArray();
 
         return Model::fromArray($entityArray);
@@ -33,7 +33,7 @@ class GetUserTaskCollectionRepository
     {
         return Entity::all()
             ->map(function (Entity $entity) {
-                /** @var array{ participator_id: string, task_collection_id: string, ability: UserAbilities } $entityArray */
+                /** @var array{ uuid: string,participator_id: string, task_collection_id: string, ability: UserAbilities } $entityArray */
                 $entityArray = $entity->toArray();
                 return Model::fromArray($entityArray);
             });

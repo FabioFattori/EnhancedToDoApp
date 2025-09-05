@@ -13,16 +13,17 @@ class CreateUsersRepository
     /**
      * @throws Throwable
      */
-    function create(User $userModel): void
+    function create(User $userModel): User
     {
-        DB::beginTransaction();
-        try {
+        return DB::transaction(function () use ($userModel) {
             $attributes = $userModel->toArray();
             $attributes['password'] = Hash::make($attributes['password']);
-            new Entity($attributes);
-            DB::commit();
-        } catch (Throwable $exception) {
-            DB::rollBack();
-        }
+            /** @var array{ uuid: string ,name: string, email: string, password: string } $entityArray */
+            $entityArray =  Entity::create($attributes)->toArray();
+
+            return User::fromArray(
+                $entityArray
+            );
+        });
     }
 }

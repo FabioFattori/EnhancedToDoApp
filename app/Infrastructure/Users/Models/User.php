@@ -5,10 +5,16 @@ namespace App\Infrastructure\Users\Models;
 class User
 {
     public function __construct(
+        protected string $uuid,
         protected string $name,
         protected string $email,
         protected string $password
     ) {
+    }
+
+    public function getUuid(): string
+    {
+        return $this->uuid;
     }
 
     public function getName(): string
@@ -27,11 +33,12 @@ class User
     }
 
     /**
-     * @return array{ name: string, email: string, password: string }
+     * @return array{ uuid: string ,name: string, email: string, password: string }
      */
     public function toArray(): array
     {
         return [
+            'uuid' => $this->uuid,
           'name' => $this->name,
           'email' => $this->email,
           'password' => $this->password
@@ -39,12 +46,13 @@ class User
     }
 
     /**
-     * @param array{ name: string, email: string, password: string } $data
+     * @param array{ uuid: string, name: string, email: string, password: string } $data
      * @return User
      */
     public static function fromArray(array $data): User
     {
         return new self(
+            $data['uuid'],
             $data['name'],
             $data['email'],
             $data['password']

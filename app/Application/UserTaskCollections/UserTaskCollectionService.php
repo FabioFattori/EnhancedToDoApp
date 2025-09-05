@@ -14,11 +14,19 @@ readonly class UserTaskCollectionService implements UserTaskCollectionServiceCon
     ) {
     }
 
-    public function destroy(string $uuid): void
+    /**
+     * @param string $uuid
+     * @return void
+     */
+    public function delete(string $uuid): void
     {
-        $this->userTaskCollectionsRepository->destroy($uuid);
+        $this->userTaskCollectionsRepository->delete($uuid);
     }
 
+    /**
+     * @param string $uuid
+     * @return UserTaskCollection|null
+     */
     public function show(string $uuid): UserTaskCollection|null
     {
         return $this->userTaskCollectionsRepository->show($uuid);
@@ -32,13 +40,22 @@ readonly class UserTaskCollectionService implements UserTaskCollectionServiceCon
         return $this->userTaskCollectionsRepository->all();
     }
 
-    public function create(UserTaskCollection $userTaskCollection): void
+    /**
+     * @param $model
+     * @return UserTaskCollection
+     */
+    public function create($model): UserTaskCollection
     {
-        $this->userTaskCollectionsRepository->create($userTaskCollection);
+        return $this->userTaskCollectionsRepository->create($model);
     }
 
-    public function update(string $uuid, UserTaskCollection $userTaskCollection): void
+    /**
+     * @param string $uuid
+     * @param UserTaskCollection $model
+     * @return UserTaskCollection
+     */
+    public function update(string $uuid, $model): UserTaskCollection
     {
-        $this->userTaskCollectionsRepository->update($uuid, $userTaskCollection);
+        return $this->userTaskCollectionsRepository->update($uuid, $model);
     }
 }

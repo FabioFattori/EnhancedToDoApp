@@ -22,29 +22,39 @@ readonly class TasksRepository implements TasksRepositoryContract
     }
 
     /**
+     * @param Task $model
+     * @return Task
      * @throws Throwable
      */
-    public function create(Task $model): void
+    public function create($model): Task
     {
-        $this->createTasksRepository->create($model);
+        return $this->createTasksRepository->create($model);
     }
 
     /**
+     * @param string $uuid
+     * @param Task $model
+     * @return Task
      * @throws Throwable
      */
-    public function update(string $uuid, Task $model): void
+    public function update(string $uuid, $model): Task
     {
-        $this->updateTasksRepository->update($uuid, $model);
+        return $this->updateTasksRepository->update($uuid, $model);
     }
 
     /**
+     * @param string $uuid
      * @throws Throwable
      */
-    public function destroy(string $uuid): void
+    public function delete(string $uuid): void
     {
         $this->destroyTasksRepository->destroy($uuid);
     }
 
+    /**
+     * @param string $uuid
+     * @return Task|null
+     */
     public function show(string $uuid): Task|null
     {
         return $this->getTasksRepository->getByUuid($uuid);

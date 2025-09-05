@@ -14,14 +14,14 @@ readonly class UserService implements UserServiceContract
     ) {
     }
 
-    public function create(User $userModel): void
+    public function create($model): User
     {
-        $this->usersRepository->create($userModel);
+        return $this->usersRepository->create($model);
     }
 
-    public function update(string $uuid, User $userModel): void
+    public function update(string $uuid, $model): User
     {
-        $this->usersRepository->update($uuid, $userModel);
+        return $this->usersRepository->update($uuid, $model);
     }
 
     public function delete(string $uuid): void

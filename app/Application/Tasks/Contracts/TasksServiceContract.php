@@ -2,18 +2,12 @@
 
 namespace App\Application\Tasks\Contracts;
 
+use App\Application\Common\Repositories\BaseServiceContract;
 use App\Infrastructure\Tasks\Models\Task;
-use Illuminate\Support\Collection;
 
-interface TasksServiceContract
+/**
+ * @extends BaseServiceContract<Task>
+ */
+interface TasksServiceContract extends BaseServiceContract
 {
-    public function create(Task $task): void;
-    public function update(string $uuid, Task $task): void;
-    public function destroy(string $uuid): void;
-    public function show(string $uuid): Task|null;
-
-    /**
-     * @return Collection<int, Task>
-     */
-    public function all(): Collection;
 }

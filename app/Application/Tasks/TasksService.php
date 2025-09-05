@@ -14,19 +14,28 @@ readonly class TasksService implements TasksServiceContract
     ) {
     }
 
-    public function create(Task $task): void
+    /**
+     * @param Task $model
+     * @return Task
+     */
+    public function create($model): Task
     {
-        $this->tasksRepository->create($task);
+        return $this->tasksRepository->create($model);
     }
 
-    public function update(string $uuid, Task $task): void
+    /**
+     * @param string $uuid
+     * @param Task $model
+     * @return Task
+     */
+    public function update(string $uuid, $model): Task
     {
-        $this->tasksRepository->update($uuid, $task);
+        return $this->tasksRepository->update($uuid, $model);
     }
 
-    public function destroy(string $uuid): void
+    public function delete(string $uuid): void
     {
-        $this->tasksRepository->destroy($uuid);
+        $this->tasksRepository->delete($uuid);
     }
 
     public function show(string $uuid): Task|null

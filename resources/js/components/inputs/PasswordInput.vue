@@ -21,7 +21,7 @@ function onClick() {
 </script>
 
 <template>
-    <ButtonIconInput :label="label" :type="inputType" :id="id" :name="id" @on-icon-click="onClick">
+    <ButtonIconInput :label="label" :type="inputType" :id="id" @on-icon-click="onClick">
         <i class="fa-solid fa-lock-open" v-if="showInput"></i>
         <i class="fa-solid fa-lock" v-else></i>
     </ButtonIconInput>

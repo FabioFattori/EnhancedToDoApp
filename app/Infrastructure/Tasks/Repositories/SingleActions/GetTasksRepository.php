@@ -21,6 +21,7 @@ class GetTasksRepository
         }
 
         /** @var array{
+         * uuid: string,
          * title: string,
          * description: string,
          * due_date: Carbon,
@@ -47,6 +48,7 @@ class GetTasksRepository
             ->map(
                 function ($singleEntity) {
                     /** @var array{
+                     * uuid: string,
                      * title: string,
                      * description: string,
                      * due_date: Carbon,

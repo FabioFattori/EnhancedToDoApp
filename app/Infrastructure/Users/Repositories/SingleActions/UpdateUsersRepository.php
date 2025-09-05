@@ -4,6 +4,7 @@ namespace App\Infrastructure\Users\Repositories\SingleActions;
 
 use App\Domain\Users\User as Entity;
 use App\Infrastructure\Users\Models\User as Model;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Throwable;
@@ -13,18 +14,20 @@ readonly class UpdateUsersRepository
     /**
      * @throws Throwable
      */
-    public function update(string $uuid, Model $userModel): void
+    public function update(string $uuid, Model $userModel): Model
     {
-        DB::beginTransaction();
-        try {
+        return DB::transaction(function () use ($uuid, $userModel) {
             $attributes = $userModel->toArray();
             $attributes['password'] = Hash::make($attributes['password']);
-            Entity::whereId($uuid)
-                ->update($attributes);
 
-            DB::commit();
-        } catch (Throwable $exception) {
-            DB::rollBack();
-        }
+            if (
+                Entity::whereId($uuid)
+                ->update($attributes)
+            ) {
+                return $userModel;
+            }
+
+            throw new Exception("User not updated");
+        });
     }
 }

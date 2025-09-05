@@ -14,6 +14,7 @@ defineProps({
             <input
                 :type="type"
                 :id="id"
+                :name="id"
                 class="mt-0.5 h-9 w-full rounded border-2 border-foreground-700 bg-background p-3 pe-10 text-text-primary shadow-md sm:text-sm hover:border-foreground"
             />
 

@@ -22,34 +22,47 @@ readonly class TaskCollectionRepository implements TaskCollectionRepositoryContr
     }
 
     /**
+     * @param Model $model
+     * @return Model
      * @throws Throwable
      */
-    public function create(Model $model): void
+    public function create($model): Model
     {
-        $this->createTaskCollectionRepository->create($model);
+        return $this->createTaskCollectionRepository->create($model);
     }
 
     /**
+     * @param string $uuid
+     * @param Model $model
+     * @return Model
      * @throws Throwable
      */
-    public function update(string $uuid, Model $model): void
+    public function update(string $uuid, $model): Model
     {
-        $this->updateTaskCollectionRepository->update($uuid, $model);
+        return $this->updateTaskCollectionRepository->update($uuid, $model);
     }
 
     /**
+     * @param string $uuid
      * @throws Throwable
      */
-    public function destroy(string $uuid): void
+    public function delete(string $uuid): void
     {
         $this->destroyTaskCollectionRepository->destroy($uuid);
     }
 
+    /**
+     * @param string $uuid
+     * @return Model|null
+     */
     public function show(string $uuid): Model|null
     {
         return $this->getTaskCollectionRepository->show($uuid);
     }
 
+    /**
+     * @return Collection<int, Model>
+     */
     public function all(): Collection
     {
         return $this->getTaskCollectionRepository->all();

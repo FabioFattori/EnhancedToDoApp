@@ -13,12 +13,8 @@ class DestroyUserTaskCollectionRepository
      */
     public function destroy(string $uuid): void
     {
-        DB::beginTransaction();
-        try {
+        DB::transaction(function () use ($uuid) {
             Entity::whereId($uuid)->delete();
-            DB::commit();
-        } catch (Throwable $e) {
-            DB::rollBack();
-        }
+        });
     }
 }

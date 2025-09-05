@@ -13,12 +13,8 @@ readonly class DestroyUsersRepository
      */
     public function destroy(string $uuid): void
     {
-        DB::beginTransaction();
-        try {
+        DB::transaction(function () use ($uuid) {
             User::destroy([$uuid]);
-            DB::commit();
-        } catch (Throwable $exception) {
-            DB::rollBack();
-        }
+        });
     }
 }

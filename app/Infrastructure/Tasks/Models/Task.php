@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 readonly class Task
 {
     public function __construct(
+        private string $uuid,
         private string $title,
         private string $description,
         private Carbon $dueDate,
@@ -19,6 +20,11 @@ readonly class Task
         private string $workerId,
         private string $taskCollectionId
     ) {
+    }
+
+    public function getUuid(): string
+    {
+        return $this->uuid;
     }
 
     public function getTitle(): string
@@ -63,6 +69,7 @@ readonly class Task
 
     /**
      * @return array{
+     *      uuid: string,
      *     title: string,
      *     description: string,
      *     due_date: Carbon,
@@ -76,6 +83,7 @@ readonly class Task
     public function toArray(): array
     {
         return [
+            'uuid' => $this->uuid,
             'title' => $this->title,
             'description' => $this->description,
             'due_date' => $this->dueDate,
@@ -89,6 +97,7 @@ readonly class Task
 
     /**
      * @param array{
+     *     uuid: string,
      *      title: string,
      *      description: string,
      *      due_date: Carbon,
@@ -103,6 +112,7 @@ readonly class Task
     public static function fromArray(array $data): self
     {
         return new self(
+            uuid: $data['uuid'],
             title: $data['title'],
             description: $data['description'],
             dueDate: Carbon::parse($data['due_date']),

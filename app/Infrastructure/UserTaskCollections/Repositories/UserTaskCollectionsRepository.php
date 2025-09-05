@@ -26,29 +26,37 @@ readonly class UserTaskCollectionsRepository implements UserTaskCollectionsRepos
     }
 
     /**
+     * @param UserTaskCollection $model
      * @throws Throwable
      */
-    public function create(UserTaskCollection $userTaskCollection): void
+    public function create($model): UserTaskCollection
     {
-        $this->createUserTaskCollectionRepository->create($userTaskCollection);
+        return $this->createUserTaskCollectionRepository->create($model);
     }
 
     /**
+     * @param string $uuid
+     * @param UserTaskCollection $model
      * @throws Throwable
      */
-    public function update(string $uuid, UserTaskCollection $userTaskCollection): void
+    public function update(string $uuid, $model): UserTaskCollection
     {
-        $this->updateUserTaskCollectionRepository->update($uuid, $userTaskCollection);
+        return $this->updateUserTaskCollectionRepository->update($uuid, $model);
     }
 
     /**
+     * @param string $uuid
      * @throws Throwable
      */
-    public function destroy(string $uuid): void
+    public function delete(string $uuid): void
     {
         $this->destroyUserTaskCollectionRepository->destroy($uuid);
     }
 
+    /**
+     * @param string $uuid
+     * @return UserTaskCollection|null
+     */
     public function show(string $uuid): UserTaskCollection|null
     {
         return $this->getUserTaskCollectionRepository->show($uuid);

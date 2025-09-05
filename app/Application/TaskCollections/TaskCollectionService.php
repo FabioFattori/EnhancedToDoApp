@@ -14,20 +14,23 @@ readonly class TaskCollectionService implements TaskCollectionServiceContract
     ) {
     }
 
-
-    public function create(Model $taskCollection): void
+    /**
+     * @param Model $model
+     * @return Model
+     */
+    public function create($model): Model
     {
-        $this->taskCollectionRepository->create($taskCollection);
+        return $this->taskCollectionRepository->create($model);
     }
 
-    public function update(string $uuid, Model $taskCollection): void
+    /**
+     * @param string $uuid
+     * @param Model $model
+     * @return Model
+     */
+    public function update(string $uuid, $model): Model
     {
-        $this->taskCollectionRepository->update($uuid, $taskCollection);
-    }
-
-    public function destroy(string $uuid): void
-    {
-        $this->taskCollectionRepository->destroy($uuid);
+        return $this->taskCollectionRepository->update($uuid, $model);
     }
 
     public function show(string $uuid): Model|null
@@ -41,5 +44,10 @@ readonly class TaskCollectionService implements TaskCollectionServiceContract
     public function all(): Collection
     {
         return $this->taskCollectionRepository->all();
+    }
+
+    public function delete(string $uuid): void
+    {
+        $this->taskCollectionRepository->delete($uuid);
     }
 }

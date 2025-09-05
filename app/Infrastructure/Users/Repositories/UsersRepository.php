@@ -23,19 +23,24 @@ readonly class UsersRepository implements UsersRepositoryContract
     }
 
     /**
+     * @param Model $model
+     * @return Model
      * @throws Throwable
      */
-    public function create(Model $userModel): void
+    public function create($model): Model
     {
-        $this->createUserRepository->create($userModel);
+        return $this->createUserRepository->create($model);
     }
 
     /**
+     * @param string $uuid
+     * @param Model $model
+     * @return Model
      * @throws Throwable
      */
-    public function update(string $uuid, Model $userModel): void
+    public function update(string $uuid, $model): Model
     {
-        $this->updateUserRepository->update($uuid, $userModel);
+        return $this->updateUserRepository->update($uuid, $model);
     }
 
     /**

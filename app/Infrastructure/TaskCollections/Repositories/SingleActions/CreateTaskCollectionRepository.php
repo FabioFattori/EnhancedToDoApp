@@ -12,14 +12,17 @@ class CreateTaskCollectionRepository
     /**
      * @throws Throwable
      */
-    public function create(Model $taskCollection): void
+    public function create(Model $taskCollection): Model
     {
-        DB::beginTransaction();
-        try {
-            new Entity($taskCollection->toArray());
-            DB::commit();
-        } catch (Throwable $exception) {
-            DB::rollBack();
-        }
+        return DB::transaction(function () use ($taskCollection) {
+            /** @var array{ uuid: string,title: string, description: string, creator_id: string} $entityArray */
+            $entityArray = Entity::create(
+                $taskCollection->toArray()
+            )->toArray();
+
+            return Model::fromArray(
+                $entityArray
+            );
+        });
     }
 }

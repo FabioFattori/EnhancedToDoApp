@@ -17,7 +17,7 @@ class GetUsersRepository
             return null;
         }
 
-        /** @var array{ name: string, email: string, password: string } $entityArray */
+        /** @var array{ uuid: string, name: string, email: string, password: string } $entityArray */
         $entityArray = $retrievedEntity->toArray();
 
         return UserModel::fromArray(
@@ -31,7 +31,7 @@ class GetUsersRepository
     public function getAll(): Collection
     {
         return Entity::all()->map(function ($singleEntity) {
-            /** @var array{ name: string, email: string, password: string } $entityArray */
+            /** @var array{ uuid: string, name: string, email: string, password: string } $entityArray */
             $entityArray = $singleEntity->toArray();
 
             return UserModel::fromArray(
