@@ -15,6 +15,7 @@ class UpdateUserTaskCollectionRepository
      */
     public function update(string $uuid, Model $userTaskCollection): Model
     {
+        /** @var Model */
         return DB::transaction(function () use ($uuid, $userTaskCollection) {
             $result = Entity::whereId($uuid)->update($userTaskCollection->toArray());
 

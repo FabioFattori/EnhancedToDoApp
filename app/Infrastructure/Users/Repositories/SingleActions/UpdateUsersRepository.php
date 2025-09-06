@@ -16,6 +16,7 @@ readonly class UpdateUsersRepository
      */
     public function update(string $uuid, Model $userModel): Model
     {
+        /** @var Model */
         return DB::transaction(function () use ($uuid, $userModel) {
             $attributes = $userModel->toArray();
             $attributes['password'] = Hash::make($attributes['password']);

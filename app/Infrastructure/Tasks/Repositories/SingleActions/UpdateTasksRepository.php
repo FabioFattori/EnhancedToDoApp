@@ -15,6 +15,7 @@ class UpdateTasksRepository
      */
     public function update(string $uuid, Task $model): Task
     {
+        /** @var Task */
         return DB::transaction(function () use ($uuid, $model) {
             if (
                 Entity::whereId($uuid)->update(

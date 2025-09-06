@@ -14,6 +14,7 @@ class CreateTaskCollectionRepository
      */
     public function create(Model $taskCollection): Model
     {
+        /** @var Model */
         return DB::transaction(function () use ($taskCollection) {
             /** @var array{ uuid: string,title: string, description: string, creator_id: string} $entityArray */
             $entityArray = Entity::create(

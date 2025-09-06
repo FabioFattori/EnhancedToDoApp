@@ -15,10 +15,11 @@ class CreateUsersRepository
      */
     function create(User $userModel): User
     {
+        /** @var User */
         return DB::transaction(function () use ($userModel) {
             $attributes = $userModel->toArray();
             $attributes['password'] = Hash::make($attributes['password']);
-            /** @var array{ uuid: string ,name: string, email: string, password: string } $entityArray */
+            /** @var array{ uuid?: string|null ,name: string, email: string, password: string } $entityArray */
             $entityArray =  Entity::create($attributes)->toArray();
 
             return User::fromArray(

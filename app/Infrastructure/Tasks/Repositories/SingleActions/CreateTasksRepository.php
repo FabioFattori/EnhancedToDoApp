@@ -17,6 +17,7 @@ class CreateTasksRepository
      */
     public function create(Task $model): Task
     {
+        /** @var Task */
         return DB::transaction(function () use ($model) {
             /** @var array{
              * uuid: string,
